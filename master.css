@@ -1,0 +1,17 @@
+
+body{
+  margin: 0;
+  padding: 0;
+}
+h1{
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  font-size: 24px;
+  color: #34363c;
+  margin-top: -244px;
+  text-align: center;
+}
+canvas{
+  cursor: auto;
+}
