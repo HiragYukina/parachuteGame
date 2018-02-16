@@ -5,56 +5,59 @@ var positionY = 0;
 var hoge = 46;
 var vectorY = 2;
 var vectorX = 0;
-var keystate = {
-  "a": false,
-  "d": false,
-  "x": false,
-  "s": false
-};
+var slope = {
+  "left": false,
+  "right": false
+}
+
+function reset() {
+  stage.addChild(titl);
+  hoge = 46;
+  vectorX = 0
+  positionY = 0
+  playerX = 250
+  playerY = 32 + 15
+  a = null
+  goal = null
+  score = 0
+  scoretext.setText(score + "m");
+  set = 0
+  slope = 0
+  player.position.set(250 - 32, 30);
+  stage.removeChild(player_goal)
+  stage.addChild(player)
+  for (var i = 0; i < 7; i++) {
+    map[i].position.set(0, height * i);
+  }
+    gameMode = "titl"
+}
 
 function titlrender() {
-
-  if (keystate["x"]) {
-    gameMode = "game"
-    stage.removeChild(titl)
-  }
+  window.addEventListener("touchstart", function() {
+    switch (gameMode) {
+      case "titl":
+      gameMode = "game"
+      stage.removeChild(titl)
+        break;
+        case "end":
+        case "clea":
+        reset()
+            break;
+    }
+  })
 }
 function gameKey() {
-  if (keystate["a"]) {
-    vectorX -= 0.1;
-    /*
-    map1.position.x += 2;
-    map2.position.x += 2;*/
-    /*for (var i = 0; i < map.length; i++) {
-      map[i].position.x += vector;
-
-    }*/
-    //playerX -= vector;
-  }
-  if (keystate["d"]) {
-    vectorX += 0.1;
-    /*  for (var i = 0; i < map.length; i++) {
-      map[i].position.x -= vector;
-
-    }*/
-    //playerX += vector;
-  }
+  vectorX += slope
 }
 function gamemain() {
-  /*if (keystate["s"]) {
-    vectorY = 4;
-  } else {
-    vectorY = 2;
-  }*/
   if (goal == null) {
-    var wind = Math.floor(Math.random() * (65 + 1 - 55)) + 55;
-    if (wind == 60) {
-      wind = (Math.floor(Math.random() * (1 + 1 - 0)) + 0)
+    var wind = Math.floor(Math.random() * 10);
+    if (wind == 0) {
+      wind = Math.floor(Math.random() * 2)
       if (wind == 0) {
-        vectorX += 0.4;
-        //console.log(playerX);
+        vectorX += 0.2;
       } else if (wind == 1) {
-        vectorX -= 0.4;
+        vectorX -= 0.2;
       }
     }
     //マップスクロール
@@ -87,7 +90,7 @@ function gamemain() {
     }
     if (rgba[0] != 255 || rgba[1] != 255 || rgba[2] != 255) {
       gameMode = "end";
-      //console.log(rgba);
+
     }
   }
   //当たり判定
@@ -102,11 +105,6 @@ function gamemain() {
     }
   }
 }
-
-//キーイベント
-window.addEventListener("keydown", function(e) {
-  keystate[e.key] = true;
-});
-window.addEventListener("keyup", function(e) {
-  keystate[e.key] = false;
-});
+window.addEventListener("deviceorientation", function(e) {
+  slope = e.gamma/600
+})

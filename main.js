@@ -74,11 +74,10 @@ var gameMode = "titl"
     //    map2 = new PIXI.Sprite(PIXI.loader.resources["images/stage2.png"].texture);
     //    map2.position.set(0, height);
     setting();
+    titlrender();
     requestAnimationFrame(animate);
   }
   function setting() {
-    //    stage.addChild(map1);
-    //    stage.addChild(map2);
     stage.addChild(titl);
     stage.addChild(player);
     stage.addChild(scorelabel);
@@ -111,28 +110,11 @@ var gameMode = "titl"
     //ctx.clearRect(0, 0, width, height);
     switch (gameMode) {
       case "titl":
-        titlrender();
 
         break;
       case "game":
         gamemain();
         gameKey();
-        break;
-      case "clea":
-
-        break;
-      case "end":
-        var endlabel = new PIXI.Text("END", {
-          font: "20px",
-          fill: "red"
-        });
-        endlabel.position.set(width / 2 - 10, height / 2);
-        stage.addChild(endlabel);
-
-        if (keystate["x"]) {
-          stage.removeChild(endlabel);
-          gemeMode = "titl"
-        }
         break;
       case "clea":
         var goallabel = new PIXI.Text("ゴール", {
@@ -141,12 +123,23 @@ var gameMode = "titl"
         });
         goalabel.position.set(width / 2 - 10, height / 2);
         stage.addChild(goalabel);
-        if (keystate["x"]) {
+        addEventListener("touchstart", function() {
           stage.removeChild(goalabel);
           gemeMode = "titl"
-        }
+        });
         break;
-
+      case "end":
+        var endlabel = new PIXI.Text("END", {
+          font: "20px",
+          fill: "red"
+        });
+        endlabel.position.set(width / 2 - 10, height / 2);
+        stage.addChild(endlabel);
+        addEventListener("touchstart", function() {
+          stage.removeChild(endlabel);
+          gemeMode = "titl"
+        });
+        break;
     }
   }
 
