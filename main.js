@@ -109,9 +109,6 @@ var gameMode = "titl"
   function render() {
     //ctx.clearRect(0, 0, width, height);
     switch (gameMode) {
-      case "titl":
-
-        break;
       case "game":
         gamemain();
         gameKey();
