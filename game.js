@@ -46,6 +46,16 @@ function titlrender() {
     }
   })
 }
+function reset() {
+  playerX = 250;
+  playerY = 32 + 15;
+  score = 0;
+  set = 0;
+  player.position.set(250 - 32, 30);
+  for (var i = 0; i < map.length; i++) {
+    map[i].position.set(0, height * i);
+  }
+}
 function gameKey() {
   vectorX += slope
 }
