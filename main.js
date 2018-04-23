@@ -109,6 +109,9 @@ var gameMode = "titl"
   function render() {
     //ctx.clearRect(0, 0, width, height);
     switch (gameMode) {
+      case"title":
+      titlrender();
+      break
       case "game":
         gamemain();
         gameKey();
@@ -123,6 +126,7 @@ var gameMode = "titl"
         addEventListener("touchstart", function() {
           stage.removeChild(goalabel);
           gemeMode = "titl"
+          reset()
         });
         break;
       case "end":
@@ -135,6 +139,7 @@ var gameMode = "titl"
         addEventListener("touchstart", function() {
           stage.removeChild(endlabel);
           gemeMode = "titl"
+          reset()
         });
         break;
     }

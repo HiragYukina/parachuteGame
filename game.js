@@ -34,16 +34,8 @@ function reset() {
 
 function titlrender() {
   window.addEventListener("touchstart", function() {
-    switch (gameMode) {
-      case "titl":
       gameMode = "game"
       stage.removeChild(titl)
-        break;
-        case "end":
-        case "clea":
-        reset()
-            break;
-    }
   })
 }
 function reset() {
@@ -55,6 +47,7 @@ function reset() {
   for (var i = 0; i < map.length; i++) {
     map[i].position.set(0, height * i);
   }
+  
 }
 function gameKey() {
   vectorX += slope
