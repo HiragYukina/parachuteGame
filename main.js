@@ -7,7 +7,7 @@ var player,
   map = [],
   backcanvas = [],
   rgba = [];
-var gameMode = "titl"
+var gameMode = "title"
 
   var width = 500,
     height = 500;
@@ -74,7 +74,6 @@ var gameMode = "titl"
     //    map2 = new PIXI.Sprite(PIXI.loader.resources["images/stage2.png"].texture);
     //    map2.position.set(0, height);
     setting();
-    titlrender();
     requestAnimationFrame(animate);
   }
   function setting() {
@@ -109,9 +108,9 @@ var gameMode = "titl"
   function render() {
     //ctx.clearRect(0, 0, width, height);
     switch (gameMode) {
-      case"title":
-      titlrender();
-      break
+      case "title":
+      titlrender()
+      break;
       case "game":
         gamemain();
         gameKey();
@@ -125,7 +124,6 @@ var gameMode = "titl"
         stage.addChild(goalabel);
         addEventListener("touchstart", function() {
           stage.removeChild(goalabel);
-          gemeMode = "titl"
           reset()
         });
         break;
@@ -138,7 +136,6 @@ var gameMode = "titl"
         stage.addChild(endlabel);
         addEventListener("touchstart", function() {
           stage.removeChild(endlabel);
-          gemeMode = "titl"
           reset()
         });
         break;
