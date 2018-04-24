@@ -99,7 +99,6 @@ endlabel.position.set(width / 2 - 10, height / 2);
     requestAnimationFrame(animate);
   }
   function setting() {
-    stage.addChild(titl);
     stage.addChild(player);
     stage.addChild(scorelabel);
     stage.addChild(scoretext);
@@ -132,7 +131,7 @@ endlabel.position.set(width / 2 - 10, height / 2);
     //ctx.clearRect(0, 0, width, height);
     switch (gameMode) {
       case "title":
-      titlrender()
+        stage.addChild(titl);
       break;
       case "game":
         gamemain();

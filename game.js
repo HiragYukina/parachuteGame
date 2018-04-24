@@ -32,10 +32,6 @@ function reset() {
     gameMode = "title"
 }
 
-
-function titlrender() {
-
-}
   window.addEventListener("touchstart", function() {
     switch (gameMode) {
       case "title":
