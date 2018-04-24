@@ -8,6 +8,11 @@ var player,
   backcanvas = [],
   rgba = [];
 var gameMode = "title"
+//タイマー
+let c = 0
+let m = 0
+let s = 0
+let ms = 00
 
   var width = 500,
     height = 500;
@@ -43,8 +48,25 @@ var gameMode = "title"
   var scorelabel = new PIXI.Text("現在位置", {
     font: "20px",
     fill: "red"
-  });
+  })
   scorelabel.position.set(350, 10);
+
+  let time = new PIXI.Text(m+"."+s+"."+ms,{
+    font:"20px",
+    fill:"red"
+  })
+  time.position.set(400,550)
+let goallabel = new PIXI.Text("ゴール", {
+  font: "20px",
+  fill: "red"
+});
+goallabel.position.set(width / 2 - 10, height / 2);
+
+let endlabel = new PIXI.Text("END", {
+  font: "20px",
+  fill: "red"
+});
+endlabel.position.set(width / 2 - 10, height / 2);
 
   window.addEventListener("DOMContentLoaded", init);
   document.body.appendChild(renderer.view);
@@ -81,6 +103,7 @@ var gameMode = "title"
     stage.addChild(player);
     stage.addChild(scorelabel);
     stage.addChild(scoretext);
+    stage.addChild(time)
   }
   //色の判定
   function decision() {
@@ -114,30 +137,18 @@ var gameMode = "title"
       case "game":
         gamemain();
         gameKey();
+        c++
+        ms = Math.floor(c % 60) 
+        s = Math.floor( c /60 )
+        m = Math.floor(c / ( 60 * 60 ))
+       // s = Math.floor(s % 60 )
+        time.setText(m + "." + s + "." + ms);
         break;
       case "clea":
-        var goallabel = new PIXI.Text("ゴール", {
-          font: "20px",
-          fill: "red"
-        });
-        goalabel.position.set(width / 2 - 10, height / 2);
         stage.addChild(goalabel);
-        addEventListener("touchstart", function() {
-          stage.removeChild(goalabel);
-          reset()
-        });
         break;
       case "end":
-        var endlabel = new PIXI.Text("END", {
-          font: "20px",
-          fill: "red"
-        });
-        endlabel.position.set(width / 2 - 10, height / 2);
         stage.addChild(endlabel);
-        addEventListener("touchstart", function() {
-          stage.removeChild(endlabel);
-          reset()
-        });
         break;
     }
   }

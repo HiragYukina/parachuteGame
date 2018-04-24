@@ -34,11 +34,26 @@ function reset() {
 
 
 function titlrender() {
+
+}
   window.addEventListener("touchstart", function() {
+    switch (gameMode) {
+      case "title":
       gameMode = "game"
       stage.removeChild(titl)
-  })
-}
+      break;
+      case "end":
+        stage.removeChild(endlabel);
+        reset()
+        break;
+      case "clea":
+        stage.removeChild(goalabel);
+        reset()
+      break;
+    }
+    })
+
+
 
 function gameKey() {
   vectorX += slope
