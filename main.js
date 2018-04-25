@@ -102,7 +102,6 @@ endlabel.position.set(width / 2 - 10, height / 2);
     stage.addChild(player);
     stage.addChild(scorelabel);
     stage.addChild(scoretext);
-    stage.addChild(time)
   }
   //色の判定
   function decision() {
@@ -136,12 +135,6 @@ endlabel.position.set(width / 2 - 10, height / 2);
       case "game":
         gamemain();
         gameKey();
-        c++
-        ms = Math.floor(c % 60) 
-        s = Math.floor( c /60 )
-        m = Math.floor(c / ( 60 * 60 ))
-       // s = Math.floor(s % 60 )
-        time.setText(m + "." + s + "." + ms);
         break;
       case "clea":
         stage.addChild(goalabel);
